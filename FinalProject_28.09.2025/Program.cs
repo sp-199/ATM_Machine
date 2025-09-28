@@ -41,17 +41,27 @@ public static class Program
                 while (true)
                 {
                     Console.Write("Enter card Number: ");
+                    string input = Console.ReadLine();
+
+                    // Check if card number already exists
+                    if (cards.Any(c => c.Number == input))
+                    {
+                        Console.WriteLine("Error: A card with this number already exists. Please enter a different number.");
+                        continue;
+                    }
+
                     try
                     {
-                        card.Number = Console.ReadLine();
+                        card.Number = input;
                         Console.WriteLine($"Card Number Saved As: {card.Number}");
-                        break;
+                        break; // exit loop
                     }
                     catch (Exception ex)
                     {
                         Console.WriteLine($"{ex.Message}");
                     }
                 }
+
 
                 // Expiry date
                 while (true)
@@ -100,10 +110,7 @@ public static class Program
                         Console.WriteLine($"{ex.Message}");
                     }
                 }
-                cards.Add(card);
-                SaveCards();
-                Console.WriteLine();
-                Console.WriteLine("Card created and saved!");
+                
                 Console.WriteLine("\nPress any key to return to main menu...");
                 Console.ReadKey();
             }
@@ -235,10 +242,28 @@ public static class Program
                             Console.WriteLine("Logging out...");
                             exit = true; // leaves login menu
                             break;
-                        case 7: //Delete the Card
-                            Console.WriteLine("Deleting the Card");
-                            cards.Remove(currentCard);
-                            exit = true;
+                        case 7: // Delete the Card
+                            Console.Clear();
+                            Console.WriteLine("Deleting the Card...");
+
+                            Console.Write("Are you sure you want to delete this card? (yes/no): ");
+                            string confirm = Console.ReadLine().ToLower();
+
+                            if (confirm == "yes")
+                            {
+                                cards.Remove(currentCard);
+                                SaveCards(); // update JSON
+                                Console.WriteLine("Card deleted successfully.");
+                                exit = true; // logout
+                            }
+                            else
+                            {
+                                Console.WriteLine("Card deletion canceled.");
+                                Console.WriteLine("Press any key to return to menu...");
+                                Console.ReadKey();
+                            }
+                            break;
+                            exit = true; // log out
                             break;
                         default:
                             Console.WriteLine("Invalid Answer (must be 1-6)");
