@@ -120,8 +120,13 @@ public static class Program
                 Console.Clear();
                 while (currentCard == null)
                 {
-                    Console.Write("Enter card number: ");
-                    string inputNumber = Console.ReadLine().Replace(" ", "");
+                    Console.Write("Enter card number (or type 'back' to return): ");
+                    string inputNumber = Console.ReadLine().Replace(" ", "").ToLower();
+
+                    if (inputNumber == "back")
+                    {
+                        break;
+                    }
 
                     currentCard = cards.FirstOrDefault(c => c.Number.Replace(" ", "") == inputNumber);
 
@@ -130,13 +135,20 @@ public static class Program
                         Console.WriteLine("Card not found. Try again.");
                     }
                 }
-
-                while (true)
+                if (currentCard == null)
                 {
-                    Console.Write("Enter PIN: ");
-                    string inputPin = Console.ReadLine();
-                    if (currentCard.Pin == inputPin) break;
-                    Console.WriteLine("Incorrect PIN. Try again.");
+                    // User chose to go back
+                    break; // or loop back to the main menu
+                }
+                else
+                {
+                    while (true)
+                    {
+                        Console.Write("Enter PIN: ");
+                        string inputPin = Console.ReadLine();
+                        if (currentCard.Pin == inputPin) break;
+                        Console.WriteLine("Incorrect PIN. Try again.");
+                    }
                 }
 
                 bool exit = false;
@@ -344,7 +356,7 @@ public static class Program
 
     static void HandleWithdraw(Card card)
 {
-    while (true) // keep repeating until user chooses "Back"
+    while (true)
     {
         Console.WriteLine("\nChoose The Account to Withdraw From:");
         Console.WriteLine("1. GEL");
