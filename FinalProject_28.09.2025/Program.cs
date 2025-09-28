@@ -104,7 +104,7 @@ public static class Program
                 SaveCards();
                 Console.WriteLine();
                 Console.WriteLine("Card created and saved!");
-                Console.WriteLine("Press any key to return to main menu...");
+                Console.WriteLine("\nPress any key to return to main menu...");
                 Console.ReadKey();
             }
             else if (choice == "2") // Login
@@ -136,9 +136,9 @@ public static class Program
                 while (!exit) // inner login menu
                 {
                     Console.Clear();
-                    Console.WriteLine($"Login successful! Welcome, {currentCard.Name}");
+                    Console.WriteLine($"Welcome, {currentCard.Name}");
                     welcomeScreen();
-                    Console.Write("Enter Your Answer [1 - 6]: ");
+                    Console.Write("\nEnter Your Answer [1 - 6]: ");
                     string answer = Console.ReadLine();
                     if (!int.TryParse(answer, out int ans))
                     {
@@ -156,7 +156,7 @@ public static class Program
                             Console.WriteLine();
                             Console.WriteLine(new string('=', 50));
                             HandleDeposit(currentCard);
-                            Console.WriteLine("Press any key to return to main menu...");
+                            Console.WriteLine("\nPress any key to return to main menu...");
                             Console.ReadKey();
                             break;
                         case 2: // Withdraw
@@ -167,7 +167,7 @@ public static class Program
                             Console.WriteLine();
                             Console.WriteLine(new string('=', 50));
                             HandleWithdraw(currentCard);
-                            Console.WriteLine("Press any key to return to main menu...");
+                            Console.WriteLine("\nPress any key to return to main menu...");
                             Console.ReadKey();
                             break;
                         case 3: // Check Balance
@@ -178,7 +178,7 @@ public static class Program
                             Console.WriteLine($"USD: {currentCard.BalanceUsd():F2}");
                             Console.WriteLine($"EUR: {currentCard.BalanceEur():F2}");
                             Console.WriteLine(new string('=', 50));
-                            Console.WriteLine("Press any key to return to menu");
+                            Console.WriteLine("\nPress any key to return to menu");
                             Console.ReadKey();
                             break;
                         case 4: // Last 5 Transactions
@@ -187,7 +187,7 @@ public static class Program
                             Console.WriteLine("Last 5 Transactions:");
                             foreach (var t in last5) Console.WriteLine(t);
                             Console.WriteLine(new string('=', 50));
-                            Console.WriteLine("Press any key to return to menu...");
+                            Console.WriteLine("\nPress any key to return to menu...");
                             Console.ReadKey();
                             break;
                         case 5: // Change PIN
