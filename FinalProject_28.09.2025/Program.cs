@@ -156,6 +156,8 @@ public static class Program
                             Console.WriteLine();
                             Console.WriteLine(new string('=', 50));
                             HandleDeposit(currentCard);
+                            Console.WriteLine("Press any key to return to main menu...");
+                            Console.ReadKey();
                             break;
                         case 2: // Withdraw
                             Console.Clear();
@@ -165,6 +167,8 @@ public static class Program
                             Console.WriteLine();
                             Console.WriteLine(new string('=', 50));
                             HandleWithdraw(currentCard);
+                            Console.WriteLine("Press any key to return to main menu...");
+                            Console.ReadKey();
                             break;
                         case 3: // Check Balance
                             Console.Clear();
