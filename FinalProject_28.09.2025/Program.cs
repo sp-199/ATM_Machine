@@ -110,7 +110,8 @@ public static class Program
                         Console.WriteLine($"{ex.Message}");
                     }
                 }
-                
+                cards.Add(card);
+                SaveCards();
                 Console.WriteLine("\nPress any key to return to main menu...");
                 Console.ReadKey();
             }
@@ -335,7 +336,7 @@ public static class Program
                         card.Deposit("USD", amount);
                         break;
                     case "3":
-                        card.Withdraw("EUR", amount);
+                        card.Deposit("EUR", amount);
                         break;
                     default:
                         Console.WriteLine("Invalid choice. Please select 1-4.");
